@@ -421,39 +421,31 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldSize = oldWidth / windowWidth;
+  var windowWidth = document.getElementById("randomPizzas").offsetWidth;
 
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 0.25;
-        case "2":
-          return 0.3333;
-        case "3":
-          return 0.5;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
+  // Changes the slider value to a percent width
+  function sizeSwitcher (size) {
+    switch(size) {
+      case "1":
+        return 0.25;
+      case "2":
+        return 0.3333;
+      case "3":
+        return 0.5;
+      default:
+        console.log("bug in sizeSwitcher");
     }
-
-    var newSize = sizeSwitcher(size);
-    var dx = (newSize - oldSize) * windowWidth;
-
-    return dx;
   }
+    var newSize = sizeSwitcher(size);
+
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-      var dx = determineDx(document.querySelector(".randomPizzaContainer"), size);
-      var newwidth = (document.querySelector(".randomPizzaContainer").offsetWidth + dx) + 'px';
-      var pizzaelement = document.querySelectorAll(".randomPizzaContainer");
-    for (var i = 0; i < elements.length; i++) {
-      pizzaelement[i].style.width = newwidth;
+    var allPizzas = document.getElementsByClassName("randomPizzaContainer");
+    var numberofPizzas = randomPizzas.length;
+
+    for (var i = 0; i < numberofPizzas; i++) {
+      allPizzas[i].style.width = (sizeSwitcher(size) * windowWidth) + 'px';
     }
   }
 
@@ -529,10 +521,12 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
