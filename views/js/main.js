@@ -421,6 +421,10 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
+  /* I removed the determineDx function that was called inside the loop to change
+  each pizza size. I only kept the windowWidth variable to change the pizza
+  size according to the screen width with the changePizzaSizes function, as well
+  as the sizeSwitcher function. */
   var windowWidth = document.getElementById("randomPizzas").offsetWidth;
 
   // Changes the slider value to a percent width
@@ -440,6 +444,10 @@ var resizePizzas = function(size) {
 
 
   // Iterates through pizza elements on the page and changes their widths
+  /* I adapted the function to make it work without the determineDx function
+  and optimized the loop. The new variable allPizzas contains all pizzas that
+  need to be modified (using the same principle as in the original version
+   for the loop)*/
   function changePizzaSizes(size) {
     var allPizzas = document.getElementsByClassName("randomPizzaContainer");
 
@@ -494,8 +502,12 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
+  /* I put the top variable outside the loop as it requires the scrollTop method
+  that generates extra computations and slow the process*/
   var top = (document.body.scrollTop / 1250);
 
+  /* I optimized the loop and used translateX and translateZ functions to speed up
+  the css animation for the sliding pizzas */
   for (var i = items.length; i--;) {
     var phase = Math.sin( top + (i % 5));
     var left = -items[i].basicLeft + 1000 * phase + 'px';
@@ -513,14 +525,16 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', function() {
-    window.requestAnimationFrame(updatePositions);
-});
+window.addEventListener('scroll', updatePositions);
+
 // Generates the sliding pizzas when the page loads.
+/* There are no need for 200 sliding pizzas on this page. To reduce the loading
+time and reach a 60 frames per second animation I reduced this number to 35 What
+speeds the loop */
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 35; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

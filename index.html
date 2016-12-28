@@ -7,9 +7,12 @@
     <meta name="author" content=" FILL ME IN ">
     <title>Cameron Pittman: Portfolio</title>
 
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
+    <!-- Simply add async to the scripts to make sure they don't block rendering-->
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
+
+    <!-- I inlided CSS that used to be located in the style.css file that the browser
+    had to load to render the page : quicker this way-->
     <style>
       html {
         font-size: 100%;
@@ -61,8 +64,13 @@
         header p { padding-left: 4.5em;}
       }
     </style>
+
+    <!-- I added a media attribute to the print css file so the browser doesn't
+    download it each time the page is rendered but only when the page will be
+    printed -->
     <link href="css/print.css" media="print" rel="stylesheet">
 
+    <!-- Simply add async to the script to make sure it doesn't block rendering-->
     <script async>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
@@ -71,6 +79,10 @@
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
+
+    <!-- Hmm, what is the impact of web fonts on speed? Measure it... It's pretty
+    bad actually so I decided to load it another way with a distinct function
+     and to async the scripts to make sure they don't block rendering-->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js" async></script>
     <script async>
       WebFont.load({
