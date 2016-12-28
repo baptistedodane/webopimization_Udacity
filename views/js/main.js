@@ -525,8 +525,9 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
-
+window.addEventListener('scroll', function() {
+	window.requestAnimationFrame(updatePositions);
+});
 // Generates the sliding pizzas when the page loads.
 /* There are no need for 200 sliding pizzas on this page. To reduce the loading
 time and reach a 60 frames per second animation I reduced this number to 35 What
