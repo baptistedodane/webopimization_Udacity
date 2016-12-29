@@ -14,6 +14,8 @@ I started by measuring index.html PageSpeed. The result wasn't promising, with p
 2. Inline & improve CSS. Index.html used to load two differents css files to render the page. I inlined the main css file in index.html within the head. I also added a media attribute to the print.css file so it is only loaded when the user wants to print the page.
 3. Avoid render blocking Js. There were a couple of Js scripts that were render blocking while not being absolutely necessary to load the page. I simply add an async attribute to avoid that problem. I also optimized the webfont loading script that used to take a lot time.
 
+PageSpeed is now 95 for mobile and 96 for desktops :) !
+
 ###Part 2: Optimize Frames per Second in pizza.html
 
 To optimize views/pizza.html, I had to modify views/js/main.js until your frames per second rate is 60 fps or higher and until the time to resize pizzas is below 5 ms.
@@ -61,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updatePositions();
 });
 ```
-No more Jank!
+No more Jank! 60 frames per seconds !
 
 #####Decrease pizza resize time
 
