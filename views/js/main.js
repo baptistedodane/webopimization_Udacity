@@ -529,12 +529,12 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 /* There are no need for 200 sliding pizzas on this page. To reduce the loading
-time and reach a 60 frames per second animation I reduced this number to 35 What
+time and reach a 60 frames per second animation I reduced this number to 40 What
 speeds the loop */
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 35; i++) {
+  for (var i = 0; i < 40; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
