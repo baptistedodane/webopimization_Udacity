@@ -511,7 +511,7 @@ function updatePositions() {
   for (var i = items.length; i--;) {
     var phase = Math.sin( top + (i % 5));
     var left = -items[i].basicLeft + 1000 * phase + 'px';
-        items[i].style.transform = "translateX("+left+") translateZ(0)";
+        items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -540,7 +540,8 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    // changed to make it work with TranslateX methods used to transform positions
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
